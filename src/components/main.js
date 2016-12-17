@@ -16,6 +16,7 @@ class Main extends Component {
 	}
 
 	render() {
+		console.log(`question property from parent component: ${this.props.question}`);
 		return (
 			<div className="main-page">
 				<ActivityLog />
@@ -25,4 +26,8 @@ class Main extends Component {
 	}
 }
 
-export default connect(null, { fetchQuestion })(Main);
+function mapStateToProps(state) {
+	return { question: state.questions.question }
+}
+
+export default connect(mapStateToProps, { fetchQuestion })(Main);
