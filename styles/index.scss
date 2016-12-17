@@ -3,3 +3,12 @@
 	@import './main-page';
 	@import './about-page';
 }
+
+
+ul {
+	padding: 0 0;
+	margin: 0 0;
+}
+li.inline-block {
+	display: inline;
+}

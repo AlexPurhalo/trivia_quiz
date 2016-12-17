@@ -6,7 +6,8 @@ import { connect } from 'react-redux';
 import ActivityLog from './main/activity-log';
 import QuestionInfo from './main/question-info';
 import SkipQuestion from './main/skip-question';
-
+import AnswerProposition from './main/answer-proposition';
+////
 // Actions import
 import { fetchQuestion, incrementQuestionsCount } from '../actions/questions';
 
@@ -32,6 +33,7 @@ class Main extends Component {
 				<SkipQuestion
 					skipQuestion={this.props.fetchQuestion}
 					incrementQuestionsCount={this.props.incrementQuestionsCount}/>
+				<AnswerProposition />
 			</div>
 		);
 	}
