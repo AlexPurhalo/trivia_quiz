@@ -1,0 +1,12 @@
+{
+	"name": "Trivial Quiz",
+	"version": "1.0.0",
+	"description": "Trivial Quiz Application",
+	"main": "index.js",
+	"repository": "git@github.com:AlexPurhalo/trivia_quiz.git",
+	"scripts": {},
+	"author": "Alex Purhalo",
+	"license": "",
+	"devDependencies": {},
+	"dependencies": {}
+}
