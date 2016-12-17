@@ -3,18 +3,28 @@ import React, { Component } from 'react'
 
 // Shows characters that contains answer
 export default class AnswerProposition extends Component {
+	charactersArr(answer) {
+		let answArr = [];
+
+		for(let i = 0; i < answer.length; i++) {
+			answArr.push(answer[i])
+		}
+
+		return answArr
+	}
 	render() {
 		return (
 			<div className="answer-proposition">
 				<div className="characters">
 					<ul>
-						<li className="inline-block character">A</li>
-						<li className="inline-block character">B</li>
-						<li className="inline-block character">S</li>
-						<li className="inline-block character">D</li>
+						{this.charactersArr(this.props.answer).map(char =>
+							<li className="inline-block character">{char}</li>
+						)}
 					</ul>
 				</div>
 			</div>
 		);
 	}
 }
+
+

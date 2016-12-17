@@ -33,7 +33,9 @@ class Main extends Component {
 				<SkipQuestion
 					skipQuestion={this.props.fetchQuestion}
 					incrementQuestionsCount={this.props.incrementQuestionsCount}/>
-				<AnswerProposition />
+				{this.props.question &&
+				<AnswerProposition
+					answer={this.props.question.answer} />}
 			</div>
 		);
 	}
