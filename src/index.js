@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { Router, browserHistory } from 'react-router';
+import reduxThunk from 'redux-thunk';
 
 // Routes import
 import routes from './routes';
@@ -15,7 +16,7 @@ import reducers from './reducers';
 import '../styles/index.scss'
 
 // Store definition with Middleware applying and Rendering of React Document Object Model (DOM)
-const createStoreWithMiddleware = applyMiddleware()(createStore);
+const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 
 ReactDOM.render(
 	<Provider store={createStoreWithMiddleware(reducers)}>
