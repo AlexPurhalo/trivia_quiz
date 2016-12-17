@@ -1,17 +1,15 @@
 // Node modules import
 import React, { Component } from 'react'
 
-// Components import
-import Header from './header';
-
-// Layout component
+// Renders application's header
 export default class App extends Component {
 	render() {
 		return (
-			<div className="app">
-				<Header />
+			<div className="header">
 				<div className="container">
-					{this.props.children}
+					<div className="brand">
+						Quiz game
+					</div>
 				</div>
 			</div>
 		);

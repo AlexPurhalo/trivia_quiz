@@ -2,9 +2,9 @@
 // Node modules import
 import React, { Component } from 'react'
 
-// Layout component
+// Renders main page of application
 export default class Main extends Component {
 	render() {
-		return <div className="main-page">Main Page</div>;
+		return <div className="main-page"></div>;
 	}
 }
