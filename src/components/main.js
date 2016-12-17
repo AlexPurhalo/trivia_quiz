@@ -17,10 +17,16 @@ class Main extends Component {
 
 	render() {
 		console.log(`question property from parent component: ${this.props.question}`);
+		console.log(this.props.question);
 		return (
 			<div className="main-page">
 				<ActivityLog />
-				<QuestionInfo />
+				{this.props.question &&
+				<QuestionInfo
+					id={this.props.question.id}
+					category={this.props.question.category.title}
+					description={this.props.question.question}
+				/>}
 			</div>
 		);
 	}
