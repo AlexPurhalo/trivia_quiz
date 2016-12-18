@@ -3,11 +3,15 @@ import React, { Component } from 'react'
 
 // Shows characters that contains answer
 export default class AnswerProposition extends Component {
+	constructor() {
+		super();
+
+		this.removeChar = this.removeChar.bind(this);
+	}
 	charactersArr(answer) {
 		let answArr = [];
-
 		for(let i = 0; i < answer.length; i++) {
-			answArr.push(answer[i])
+			answArr.push(answer[i]);
 		}
 
 		return answArr
@@ -30,15 +34,42 @@ export default class AnswerProposition extends Component {
 		return arr;
 	}
 
+	returnChar(array) {
+		let chars = [];
+
+		for(let i = 0; i < array.length; i++) {
+			let char = { name: array[i], id: i};
+			chars.push(char);
+		}
+
+		return (
+			chars.map(char => {
+					return (
+						<li
+							key={char.id}
+							onClick={e => this.removeChar(char.id)}
+							className={`inline-block character ${char.name === ' ' && 'space-as-character'}`}>
+							{char.name}
+						</li>
+					)
+				}
+			)
+		)
+	}
+
+	removeChar(charId) {
+		console.log(charId)
+	}
 	render() {
+		let chars = this.charactersArr(this.props.answer);
+		let randomChars = this.randomize(chars);
+
 		return (
 			<div className="answer-proposition">
 				<div className="answer-container">
 					<div className="random-characters">
 						<ul className="inline-list">
-							{this.randomize(this.charactersArr(this.props.answer)).map(char =>
-								<li className={`inline-block character ${char === ' ' && 'space-as-character'}`}>{char}</li>
-							)}
+							{this.returnChar(randomChars)}
 						</ul>
 					</div>
 				</div>
