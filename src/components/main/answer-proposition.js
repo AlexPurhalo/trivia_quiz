@@ -33,12 +33,14 @@ export default class AnswerProposition extends Component {
 	render() {
 		return (
 			<div className="answer-proposition">
-				<div className="characters">
-					<ul>
-						{this.randomize(this.charactersArr(this.props.answer)).map(char =>
-							<li className="inline-block character">{char}</li>
-						)}
-					</ul>
+				<div className="answer-container">
+					<div className="random-characters">
+						<ul className="inline-list">
+							{this.randomize(this.charactersArr(this.props.answer)).map(char =>
+								<li className={`inline-block character ${char === ' ' && 'space-as-character'}`}>{char}</li>
+							)}
+						</ul>
+					</div>
 				</div>
 			</div>
 		);
