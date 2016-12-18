@@ -7,7 +7,8 @@ import ActivityLog from './main/activity-log';
 import QuestionInfo from './main/question-info';
 import SkipQuestion from './main/skip-question';
 import AnswerProposition from './main/answer-proposition';
-////
+import Loader from './loader';
+
 // Actions import
 import { fetchQuestion, incrementQuestionsCount } from '../actions/questions';
 
@@ -21,21 +22,21 @@ class Main extends Component {
 		// console.log(`question property from parent component: ${this.props.question}`);
 		return (
 			<div className="main-page">
-				<ActivityLog
-					questionsTotalCount={this.props.questionsTotalCount}/>
-				{this.props.question &&
-				<QuestionInfo
-					id={this.props.question.id}
-					category={this.props.question.category.title}
-					description={this.props.question.question}
-				/>
-				}
-				<SkipQuestion
-					skipQuestion={this.props.fetchQuestion}
-					incrementQuestionsCount={this.props.incrementQuestionsCount}/>
-				{this.props.question &&
-				<AnswerProposition
-					answer={this.props.question.answer} />}
+				{this.props.question ? (
+					<div>
+						<ActivityLog
+							questionsTotalCount={this.props.questionsTotalCount} />
+						<QuestionInfo
+							id={this.props.question.id}
+							category={this.props.question.category.title}
+							description={this.props.question.question} />
+						<SkipQuestion
+							skipQuestion={this.props.fetchQuestion}
+							incrementQuestionsCount={this.props.incrementQuestionsCount} />
+						<AnswerProposition
+							answer={this.props.question.answer} />
+					</div>
+				) : <Loader />}
 			</div>
 		);
 	}
