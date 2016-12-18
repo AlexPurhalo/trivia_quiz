@@ -1,20 +1,30 @@
 // Node modules import
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
+// Actions import
+import { receiveAnswerCharacter } from '../../actions/questions';
 
 // Shows characters that contains answer
-export default class AnswerProposition extends Component {
+class AnswerProposition extends Component {
 	constructor() {
 		super();
 
 		this.removeChar = this.removeChar.bind(this);
+		this.state = { answArr: ''}
 	}
+
+	componentWillMount() {
+		this.charactersArr(this.props.answer);
+	}
+
 	charactersArr(answer) {
 		let answArr = [];
 		for(let i = 0; i < answer.length; i++) {
 			answArr.push(answer[i]);
 		}
 
-		return answArr
+		this.setState({ answArr: answArr})
 	}
 
 	randomize(arr) {
@@ -47,7 +57,7 @@ export default class AnswerProposition extends Component {
 					return (
 						<li
 							key={char.id}
-							onClick={e => this.removeChar(char.id)}
+							onClick={e => this.removeChar(char)}
 							className={`inline-block character ${char.name === ' ' && 'space-as-character'}`}>
 							{char.name}
 						</li>
@@ -57,12 +67,21 @@ export default class AnswerProposition extends Component {
 		)
 	}
 
-	removeChar(charId) {
-		console.log(charId)
+	removeChar(char) {
+		const charId = char.id;
+		let charsArr = this.state.answArr;
+
+		let index = charsArr.indexOf(charsArr[charId]);
+
+		charsArr.splice(index, 1);
+
+		this.setState({ answArr: charsArr });
+		// add to another arr (use actions)
+		this.props.receiveAnswerCharacter(charId)
+
 	}
 	render() {
-		let chars = this.charactersArr(this.props.answer);
-		let randomChars = this.randomize(chars);
+		let randomChars = this.randomize(this.state.answArr);
 
 		return (
 			<div className="answer-proposition">
@@ -77,3 +96,5 @@ export default class AnswerProposition extends Component {
 		);
 	}
 }
+
+export default connect(null, { receiveAnswerCharacter })(AnswerProposition);

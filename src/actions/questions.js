@@ -2,7 +2,11 @@
 import axios from 'axios';
 
 // Action's types import
-import { FETCH_QUESTION, INCREMENT_QUESTIONS_COUNT } from '../constants/questions';
+import {
+	FETCH_QUESTION,
+	INCREMENT_QUESTIONS_COUNT,
+	RECEIVE_CHARACTER
+} from '../constants/questions';
 
 // Receives a random question
 export function fetchQuestion() {
@@ -27,3 +31,12 @@ export function incrementQuestionsCount() {
 	}
 }
 
+export function receiveAnswerCharacter(char) {
+	return function(dispatch) {
+		// console.log(char);
+		dispatch({
+			type: RECEIVE_CHARACTER,
+			payload: char
+		})
+	}
+}
