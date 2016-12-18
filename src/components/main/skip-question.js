@@ -6,6 +6,7 @@ export default class SkipQuestion extends Component {
 	skipQuestionClick() {
 		this.props.skipQuestion();
 		this.props.incrementQuestionsCount();
+		this.props.clearAnswerBoard();
 	}
 
 	render() {
