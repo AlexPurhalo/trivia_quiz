@@ -8,7 +8,8 @@ import {
 	CHAR_RELOCATION_TO_BOARD,
 	CHAR_RELOCATION_TO_PROPOSITION,
 	CLEAR_ANSWER_BOARD,
-	CHECK_ANSWER
+	CHECK_ANSWER,
+	INCREMENT_CORRECT_QUESTIONS
 } from '../constants/questions';
 
 // Functions import
@@ -74,6 +75,14 @@ export function checkAnswer() {
 	return function(dispatch) {
 		dispatch({
 			type: CHECK_ANSWER
+		})
+	}
+}
+
+export function incrementCorrectAnswersCount() {
+	return function(dispatch) {
+		dispatch({
+			type: INCREMENT_CORRECT_QUESTIONS
 		})
 	}
 }

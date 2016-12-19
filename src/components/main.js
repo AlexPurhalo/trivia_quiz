@@ -19,7 +19,8 @@ import {
 	charRelocationToBoard,
 	charRelocationToProposition,
 	clearAnswerBoard,
-	checkAnswer
+	checkAnswer,
+	incrementCorrectAnswersCount
 } from '../actions/questions';
 
 // Renders main page of application
@@ -35,7 +36,8 @@ class Main extends Component {
 				{this.props.question ? (
 					<div>
 						<ActivityLog
-							questionsTotalCount={this.props.questionsTotalCount} />
+							questionsTotalCount={this.props.questionsTotalCount}
+							correctAnswersCount={this.props.correctAnswersCount} />
 						<QuestionInfo
 							id={this.props.question.id}
 							category={this.props.question.category}
@@ -57,7 +59,10 @@ class Main extends Component {
 									checkAnswer={this.props.checkAnswer} />
 							) :
 							(
-								<ContinueQuiz checkCondition={this.props.answerCheckCondition} />
+								<ContinueQuiz
+									checkCondition={this.props.answerCheckCondition}
+									incrementCorrectAnswersCount={this.props.incrementCorrectAnswersCount}
+									fetchNextQuestion={this.props.fetchQuestion} />
 							)
 						}
 
@@ -74,7 +79,8 @@ function mapStateToProps(state) {
 		questionsTotalCount: state.questions.questionsCount,
 		answerInProposition: state.questions.answerInProposition,
 		answerCharacters: state.questions.answerOnBoard,
-		answerCheckCondition: state.questions.answerCheckCondition
+		answerCheckCondition: state.questions.answerCheckCondition,
+		correctAnswersCount: state.questions.correctAnswers
 	}
 }
 
@@ -85,6 +91,7 @@ export default connect(
 		charRelocationToProposition,
 		charRelocationToBoard,
 		clearAnswerBoard,
-		checkAnswer
+		checkAnswer,
+		incrementCorrectAnswersCount
 	}
 )(Main);

@@ -8,7 +8,8 @@ import {
 	CHAR_RELOCATION_TO_BOARD,
 	CHAR_RELOCATION_TO_PROPOSITION,
 	CLEAR_ANSWER_BOARD,
-	CHECK_ANSWER
+	CHECK_ANSWER,
+	INCREMENT_CORRECT_QUESTIONS
 } from '../constants/questions';
 
 // Initial states for reducers
@@ -17,7 +18,8 @@ const INITIAL_STATE = {
 	questionsCount: 0,
 	answerOnBoard: [],
 	answerInProposition: [],
-	answerCheckCondition: null
+	answerCheckCondition: null,
+	correctAnswers: 0
 };
 
 export default function(state = INITIAL_STATE, action) {
@@ -70,7 +72,15 @@ export default function(state = INITIAL_STATE, action) {
 			return {
 				...state, answerCheckCondition: answer
 			};
-		// state.answer
+
+		case INCREMENT_CORRECT_QUESTIONS:
+			return { ...state,
+				correctAnswers: state.correctAnswers + 1,
+				questionsCount: state.questionsCount + 1,
+				answerOnBoard: [],
+				answerCheckCondition: null,
+			};
+
 		default:
 			return state;
 	}

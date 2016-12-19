@@ -9,9 +9,14 @@ export default class ContinueQuiz extends Component {
 		}
 	}
 
+	nextQuestion() {
+		this.props.incrementCorrectAnswersCount();
+		this.props.fetchNextQuestion()
+	}
+
 	render() {
 		return (
-			<div>
+			<div onClick={this.nextQuestion.bind(this)}>
 				{this.showNextQuizButton(this.props.checkCondition)}
 			</div>
 		);
