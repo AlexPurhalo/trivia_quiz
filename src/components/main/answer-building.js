@@ -30,10 +30,19 @@ export default class AnswerBuilding extends Component {
 		);
 	}
 
+	checkCondition() {
+		if (this.props.checkCondition === true ) {
+			return 'success-answer'
+		} else if (this.props.checkCondition === false ) {
+			return 'failure-answer'
+		} else {
+			return ''
+		}
+	}
 	render() {
 		return(
 			<div className="answer-building">
-				<div className="answer-container">
+				<div className={`answer-container ${this.checkCondition()} `}>
 					<div className="characters-place">
 						<ul className="inline-list">
 							{

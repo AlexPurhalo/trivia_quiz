@@ -12,6 +12,7 @@ export default class AnswerProposition extends Component {
 	// removes a char object from array
 	removeChar(char) {
 		this.props.charRelocationToBoard(char);
+		this.props.checkAnswer();
 	}
 
 	renderCharacter(characters) {

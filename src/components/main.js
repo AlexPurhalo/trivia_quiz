@@ -6,8 +6,10 @@ import { connect } from 'react-redux';
 import ActivityLog from './main/activity-log';
 import QuestionInfo from './main/question-info';
 import SkipQuestion from './main/skip-question';
+import ProgressMessage from './main/progress-message';
 import AnswerBuilding from './main/answer-building';
 import AnswerProposition from './main/answer-proposition';
+import ContinueQuiz from './main/continue-quiz';
 import Loader from './loader';
 
 // Actions import
@@ -16,7 +18,8 @@ import {
 	incrementQuestionsCount,
 	charRelocationToBoard,
 	charRelocationToProposition,
-	clearAnswerBoard
+	clearAnswerBoard,
+	checkAnswer
 } from '../actions/questions';
 
 // Renders main page of application
@@ -41,12 +44,23 @@ class Main extends Component {
 							skipQuestion={this.props.fetchQuestion}
 							incrementQuestionsCount={this.props.incrementQuestionsCount}
 							clearAnswerBoard={this.props.clearAnswerBoard} />
+						<ProgressMessage condition={this.props.answerCheckCondition} />
 						<AnswerBuilding
 							characters={this.props.answerCharacters}
-							charRelocationToProposition={this.props.charRelocationToProposition} />
-						<AnswerProposition
-							answer={this.props.answerInProposition}
-							charRelocationToBoard={this.props.charRelocationToBoard} />
+							charRelocationToProposition={this.props.charRelocationToProposition}
+							checkCondition={this.props.answerCheckCondition} />
+						{this.props.answerCheckCondition === null ?
+							(
+								<AnswerProposition
+									answer={this.props.answerInProposition}
+									charRelocationToBoard={this.props.charRelocationToBoard}
+									checkAnswer={this.props.checkAnswer} />
+							) :
+							(
+								<ContinueQuiz checkCondition={this.props.answerCheckCondition} />
+							)
+						}
+
 					</div>
 				) : <Loader />}
 			</div>
@@ -59,7 +73,8 @@ function mapStateToProps(state) {
 		question: state.questions.question,
 		questionsTotalCount: state.questions.questionsCount,
 		answerInProposition: state.questions.answerInProposition,
-		answerCharacters: state.questions.answerOnBoard
+		answerCharacters: state.questions.answerOnBoard,
+		answerCheckCondition: state.questions.answerCheckCondition
 	}
 }
 
@@ -69,6 +84,7 @@ export default connect(
 		incrementQuestionsCount,
 		charRelocationToProposition,
 		charRelocationToBoard,
-		clearAnswerBoard
+		clearAnswerBoard,
+		checkAnswer
 	}
 )(Main);

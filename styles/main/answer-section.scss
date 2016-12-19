@@ -3,8 +3,9 @@
 }
 
 .answer-building {
-	margin: 1rem 0 2rem;
+	margin: 1rem 0 1rem;
 }
+
 .answer-container {
 	margin: 0 auto;
 	max-width: 676px;
@@ -45,4 +46,24 @@
 	.space-as-character {
 		margin: -1.09rem 0.4rem;
 	}
+}
+
+.next-question {
+	margin: 0 auto;
+	text-transform: uppercase;
+	background-color: rgb(78, 183, 76);
+	color: white;
+	font-weight: 700;
+	max-width: 676px;
+	text-align: center;
+	padding: 0.35rem 0;
+	border-radius: 2px;
+}
+
+.success-answer {
+	border: 1px solid rgb(78, 183, 76);
+}
+
+.failure-answer {
+	border: 1px solid indianred;
 }

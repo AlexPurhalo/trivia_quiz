@@ -7,10 +7,13 @@ import {
 	INCREMENT_QUESTIONS_COUNT,
 	CHAR_RELOCATION_TO_BOARD,
 	CHAR_RELOCATION_TO_PROPOSITION,
-	CLEAR_ANSWER_BOARD
+	CLEAR_ANSWER_BOARD,
+	CHECK_ANSWER
 } from '../constants/questions';
 
+// Functions import
 import { strToObjsArr } from '../functions/string-to-objects-array';
+
 // Receives a random question
 export function fetchQuestion() {
 	return function(dispatch) {
@@ -63,6 +66,14 @@ export function clearAnswerBoard() {
 	return function(dispatch) {
 		dispatch({
 			type: CLEAR_ANSWER_BOARD
+		})
+	}
+}
+
+export function checkAnswer() {
+	return function(dispatch) {
+		dispatch({
+			type: CHECK_ANSWER
 		})
 	}
 }
