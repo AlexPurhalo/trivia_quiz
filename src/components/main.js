@@ -18,7 +18,6 @@ import {
 	incrementQuestionsCount,
 	charRelocationToBoard,
 	charRelocationToProposition,
-	clearAnswerBoard,
 	checkAnswer,
 	incrementCorrectAnswersCount
 } from '../actions/questions';
@@ -43,9 +42,8 @@ class Main extends Component {
 							category={this.props.question.category}
 							description={this.props.question.question} />
 						<SkipQuestion
-							skipQuestion={this.props.fetchQuestion}
-							incrementQuestionsCount={this.props.incrementQuestionsCount}
-							clearAnswerBoard={this.props.clearAnswerBoard} />
+							fetchNextQuestion={this.props.fetchQuestion}
+							incrementQuestionsCount={this.props.incrementQuestionsCount} />
 						<ProgressMessage condition={this.props.answerCheckCondition} />
 						<AnswerBuilding
 							characters={this.props.answerCharacters}
@@ -90,7 +88,6 @@ export default connect(
 		incrementQuestionsCount,
 		charRelocationToProposition,
 		charRelocationToBoard,
-		clearAnswerBoard,
 		checkAnswer,
 		incrementCorrectAnswersCount
 	}

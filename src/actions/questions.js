@@ -7,7 +7,6 @@ import {
 	INCREMENT_QUESTIONS_COUNT,
 	CHAR_RELOCATION_TO_BOARD,
 	CHAR_RELOCATION_TO_PROPOSITION,
-	CLEAR_ANSWER_BOARD,
 	CHECK_ANSWER,
 	INCREMENT_CORRECT_QUESTIONS
 } from '../constants/questions';
@@ -59,14 +58,6 @@ export function charRelocationToProposition(char) {
 		dispatch({
 			type: CHAR_RELOCATION_TO_PROPOSITION,
 			payload: char
-		})
-	}
-}
-
-export function clearAnswerBoard() {
-	return function(dispatch) {
-		dispatch({
-			type: CLEAR_ANSWER_BOARD
 		})
 	}
 }

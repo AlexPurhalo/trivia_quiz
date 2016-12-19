@@ -7,7 +7,6 @@ import {
 	INCREMENT_QUESTIONS_COUNT,
 	CHAR_RELOCATION_TO_BOARD,
 	CHAR_RELOCATION_TO_PROPOSITION,
-	CLEAR_ANSWER_BOARD,
 	CHECK_ANSWER,
 	INCREMENT_CORRECT_QUESTIONS
 } from '../constants/questions';
@@ -28,7 +27,9 @@ export default function(state = INITIAL_STATE, action) {
 			return {
 				...state,
 				question: action.payload,
-				answerInProposition: action.payload.answerInProposition
+				answerInProposition: action.payload.answerInProposition,
+				answerOnBoard: [],
+				answerCheckCondition: null
 			};
 
 		case INCREMENT_QUESTIONS_COUNT:
@@ -54,9 +55,6 @@ export default function(state = INITIAL_STATE, action) {
 				answerOnBoard: array,
 				answerCheckCondition: null
 			};
-
-		case CLEAR_ANSWER_BOARD:
-			return { ...state, answerOnBoard: [] };
 
 		case CHECK_ANSWER:
 			const userAnswer = objsArrToString(state.answerOnBoard);
