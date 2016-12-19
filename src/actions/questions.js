@@ -12,7 +12,7 @@ import {
 } from '../constants/questions';
 
 // Functions import
-import { strToObjsArr } from '../functions/string-to-objects-array';
+import { strToObjsArr, randomize } from '../functions/asnwer-transformation';
 
 // Receives a random question
 export function fetchQuestion() {
@@ -20,7 +20,7 @@ export function fetchQuestion() {
 		return axios.get('http://jservice.io/api/random')
 			.then(response => {
 				let question = response.data[0];
-
+				console.log(response.data[0].answer);
 				dispatch({
 					type: FETCH_QUESTION,
 					payload: {
@@ -28,7 +28,7 @@ export function fetchQuestion() {
 						answer: question.answer,
 						category: question.category.title,
 						question: question.question,
-						answerInProposition: strToObjsArr(question.answer)
+						answerInProposition: randomize(strToObjsArr(question.answer))
 					}
 				})
 			});

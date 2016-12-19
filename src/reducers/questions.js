@@ -1,5 +1,5 @@
 // Functions import
-import { objsArrToString } from '../functions/string-to-objects-array';
+import { objsArrToString } from '../functions/asnwer-transformation';
 
 // Action's types import
 import {
